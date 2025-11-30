@@ -7,7 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 import mkcert from 'vite-plugin-mkcert';
 
 export default defineConfig({
-    base: '/',
+    base: '/modules/nsquickconfig/build',
     plugins: [
         tailwindcss(),
         vuePlugin(),

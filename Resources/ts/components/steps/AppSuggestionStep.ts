@@ -18,9 +18,9 @@ export default defineComponent({
         <div class="qc:flex-auto qc:flex qc:flex-row qc:p-4">
             <div class="qc:max-w-full qc:flex qc:flex-col">
 
-                <div class="qc:flex-auto qc:grid qc:grid-cols-1 qc:md:grid-cols-3 qc:lg:grid-cols-4 qc:xl:grid-cols-5 qc:gap-6 qc:mb-8">
+                <div class="qc:flex-auto qc:grid qc:grid-cols-1 qc:md:grid-cols-3 qc:lg:grid-cols-4 qc:gap-6 qc:mb-8">
                     <!-- Gastro Extension -->
-                    <div class="qc:border qc:border-gray-200 qc:rounded-lg qc:p-6 hover:qc:shadow-lg qc:transition-shadow qc:flex qc:flex-col">
+                    <div class="qc:border qc:border-gray-200 ns-box qc:rounded-lg qc:p-6 hover:qc:shadow-lg qc:transition-shadow qc:flex qc:flex-col">
                         <div class="qc:flex qc:items-start qc:gap-4 qc:mb-4">
                             <div class="qc:w-16 qc:h-16 qc:bg-gradient-to-br qc:from-orange-400 qc:to-red-500 qc:rounded-lg qc:flex qc:items-center qc:justify-center qc:flex-shrink-0">
                                 <svg class="qc:w-8 qc:h-8 qc:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -74,7 +74,7 @@ export default defineComponent({
                     </div>
                     
                     <!-- NexoPOS Authorizer -->
-                    <div class="qc:border qc:border-gray-200 qc:rounded-lg qc:p-6 hover:qc:shadow-lg qc:transition-shadow qc:flex qc:flex-col">
+                    <div class="qc:border ns-box qc:border-gray-200 qc:rounded-lg qc:p-6 hover:qc:shadow-lg qc:transition-shadow qc:flex qc:flex-col">
                         <div class="qc:flex qc:items-start qc:gap-4 qc:mb-4">
                             <div class="qc:w-16 qc:h-16 qc:bg-gradient-to-br qc:from-blue-400 qc:to-indigo-500 qc:rounded-lg qc:flex qc:items-center qc:justify-center qc:flex-shrink-0">
                                 <svg class="qc:w-8 qc:h-8 qc:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

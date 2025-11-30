@@ -37,7 +37,7 @@ const getAsyncComponents = () => {
 
 export default defineComponent({
     template: `
-    <div class="qc:shadow-lg qc:w-screen qc:h-screen ns-box qc:rounded-none! qc:flex qc:flex-col">
+    <div class="qc:shadow-lg qc:w-screen qc:h-screen bg-surface qc:rounded-none! qc:flex qc:flex-col">
     
         <!-- Step Content with Transition -->
         <div class="qc:flex-auto qc:overflow-y-auto ns-box-body">

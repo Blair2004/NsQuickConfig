@@ -225,6 +225,7 @@ class QuickConfigController extends Controller
 
             // Save server address
             $this->options->set('ns_pa_server_address', $serverAddress);
+            
 
             // Clear existing default printers
             Printer::where('is_default', true)->update(['is_default' => false]);

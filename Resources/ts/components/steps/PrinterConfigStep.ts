@@ -2,7 +2,7 @@ import img from '@img/character-2.png';
 import Progress from '../Progress';
 
 declare const defineComponent: any;
-declare const FormValidation: any, nsComponents: any, nsHttpClient: any, nsSnackBar: any, Popup: any, nsAlertPopup: any, nsConfirmPopup: any;
+declare const FormValidation: any, nsComponents: any, nsHttpClient: any, nsSnackBar: any, Popup: any, nsAlertPopup: any, nsConfirmPopup: any, __m:any;
 
 export default defineComponent({
     template: `
@@ -25,26 +25,26 @@ export default defineComponent({
                         <div class="qc:space-y-3">
                             <div v-for="printer in printers" 
                                 :key="printer.name"
-                                class="qc:rounded-lg qc:p-4 qc:border-2 border-secondary"
-                                :class="selectedPrinter === printer.name ? 'qc:shadow bg-secondary' : ''">
+                                @click="selectedPrinter = printer.name"
+                                class="qc:cursor-pointer qc:rounded-lg qc:p-4 qc:border-2 border-secondary"
+                                :class="selectedPrinter === printer.name ? 'qc:shadow qc:bg-teal-200' : ''">
                                 <div class="qc:flex qc:items-start qc:justify-between">
                                     <div class="qc:flex-1 qc:overflow-y-auto">
-                                        <div class="qc:flex qc:items-center qc:justify-between qc:gap-2 qc:mb-2">
-                                            <div class="qc:flex qc:gap-2 qc:justify-center">
-                                                <input 
-                                                    type="radio"
-                                                    :id="printer.name"
-                                                    :value="printer.name"
-                                                    v-model="selectedPrinter"
-                                                    class="qc:w-4 qc:h-4 qc:text-blue-600"
-                                                />
-                                                <label :for="printer.name" class="qc:font-semibold text-white qc:cursor-pointer">
+                                        <div class="qc:flex qc:md:flex-col qc:justify-between qc:gap-2 qc:mb-2">
+                                            <div class="qc:flex qc:gap-2 qc:justify-start">
+                                                <label :for="printer.name" class="qc:font-semibold text-fontcolor qc:cursor-pointer">
                                                     {{ printer.displayName || printer.name }}
                                                 </label>
                                                 <span v-if="printer.isDefault" 
                                                     class="qc:px-2 qc:py-0.5 qc:bg-green-100 qc:text-green-600 qc:text-xs qc:rounded">
                                                     {{ __('System Default') }}
                                                 </span>
+                                            </div>                                        
+                                            <div class="qc:text-sm qc:text-fontcolor">
+                                                <p v-if="printer.description">{{ printer.description }}</p>
+                                                <p v-if="printer.options && printer.options['printer-make-and-model']">
+                                                    {{ __('Model:') }} {{ printer.options['printer-make-and-model'] }}
+                                                </p>
                                             </div>
                                             <div v-if="selectedPrinter === printer.name" class="qc:flex qc:gap-2 qc:items-center qc:text-sm">
                                                 <ns-button :label="__m( 'Test Print', 'NsQuickConfig' )" @click="testPrint(printer)" size="sm" :disabled="testingPrint">
@@ -55,13 +55,6 @@ export default defineComponent({
                                                     <span v-else><i class="las la-check qc:mr-2"></i> {{ __m( 'Select', 'NsQuickConfig' ) }} </span>
                                                 </ns-button>
                                             </div>
-                                        </div>
-                                        
-                                        <div class="qc:text-sm qc:text-fontcolor qc:ml-6">
-                                            <p v-if="printer.description">{{ printer.description }}</p>
-                                            <p v-if="printer.options && printer.options['printer-make-and-model']">
-                                                {{ __('Model:') }} {{ printer.options['printer-make-and-model'] }}
-                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -294,11 +287,10 @@ export default defineComponent({
                         content
                     }
                 ).toPromise();
-                
-                Popup.show(nsAlertPopup, {
-                    title: __('Test Print Sent'),
-                    message: __('A test receipt has been sent to the printer. Did you receive the printout?'),
-                });
+
+                nsSnackBar.success(
+                    __m( 'The print job was submitted. Please check if anything was printed.', 'NsQuickConfig')
+                );
             } catch (error) {
                 Popup.show(nsAlertPopup, {
                     title: __('Test Print Failed'),

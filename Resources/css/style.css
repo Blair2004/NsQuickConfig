@@ -1,1 +1,20 @@
 @import "tailwindcss" prefix(qc);
+
+[data-theme="light"] {
+    .current-step {
+        @apply qc:text-white qc:scale-110;
+    }
+    .passed-step {
+        @apply qc:text-white;
+    }
+    .upcoming-step {
+        @apply qc:bg-gray-600 qc:border-gray-300 qc:text-gray-400;
+    }
+
+    .passed-step-text {
+        @apply qc:text-teal-700;
+    }
+    .upcoming-step-text {
+        @apply qc:text-gray-500;
+    }
+}

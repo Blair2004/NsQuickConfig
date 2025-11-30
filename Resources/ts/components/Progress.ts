@@ -7,7 +7,7 @@ export default defineComponent({
         <div class="qc:max-w-4xl qc:mx-auto">
             <div class="qc:flex qc:items-center qc:justify-between qc:relative">
                 <!-- Progress Line Background -->
-                <div class="qc:absolute qc:top-5 qc:left-0 qc:right-0 qc:h-1 qc:bg-gray-200 qc:z-0"></div>
+                <div class="qc:absolute qc:top-5 qc:left-0 qc:right-0 qc:h-1 qc:bg-gray-600 qc:z-0"></div>
                 
                 <!-- Progress Line Animated -->
                 <div 
@@ -26,9 +26,9 @@ export default defineComponent({
                     <div 
                         class="qc:w-10 qc:h-10 qc:rounded-full qc:flex qc:items-center qc:justify-center qc:font-semibold qc:transition-all qc:duration-300 qc:border-2"
                         :class="[
-                            index < currentStep ? 'bg-secondary border-secondary qc:text-white' : '',
-                            index === currentStep ? 'bg-secondary border-secondary qc:text-white qc:scale-110' : '',
-                            index > currentStep ? 'qc:bg-white qc:border-gray-300 qc:text-gray-400' : ''
+                            index < currentStep ? 'passed-step bg-secondary border-secondary' : '',
+                            index === currentStep ? 'current-step bg-secondary border-secondary' : '',
+                            index > currentStep ? 'upcoming-step' : ''
                         ]"
                     >
                         <!-- Checkmark for completed steps -->
@@ -43,7 +43,7 @@ export default defineComponent({
                     <div 
                         class="qc:mt-2 qc:text-xs qc:font-medium qc:text-center qc:transition-all qc:duration-300"
                         :class="[
-                            index <= currentStep ? 'text-secondary' : 'qc:text-gray-200'
+                            index <= currentStep ? 'passed-step-text' : 'upcoming-step-text'
                         ]"
                     >
                         {{ step.title }}

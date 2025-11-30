@@ -6,12 +6,12 @@
 * @vue/reactivity v3.5.25
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
 * @license MIT
-**/new Set(Object.getOwnPropertyNames(Symbol).filter(e=>e!=="arguments"&&e!=="caller").map(e=>Symbol[e]).filter(m));function p(e){return!u(e,"__v_skip")&&Object.isExtensible(e)&&f(e,"__v_skip",!0),e}const h="/assets/character-1-BNPYwpbW.png",i=defineComponent({props:["steps","progressWidth","currentStep"],template:`
+**/new Set(Object.getOwnPropertyNames(Symbol).filter(e=>e!=="arguments"&&e!=="caller").map(e=>Symbol[e]).filter(m));function p(e){return!u(e,"__v_skip")&&Object.isExtensible(e)&&f(e,"__v_skip",!0),e}const h="/modules/nsquickconfig/build/assets/character-1-BNPYwpbW.png",i=defineComponent({props:["steps","progressWidth","currentStep"],template:`
     <div class="bg-primary qc:px-8 qc:py-6">
         <div class="qc:max-w-4xl qc:mx-auto">
             <div class="qc:flex qc:items-center qc:justify-between qc:relative">
                 <!-- Progress Line Background -->
-                <div class="qc:absolute qc:top-5 qc:left-0 qc:right-0 qc:h-1 qc:bg-gray-200 qc:z-0"></div>
+                <div class="qc:absolute qc:top-5 qc:left-0 qc:right-0 qc:h-1 qc:bg-gray-600 qc:z-0"></div>
                 
                 <!-- Progress Line Animated -->
                 <div 
@@ -30,9 +30,9 @@
                     <div 
                         class="qc:w-10 qc:h-10 qc:rounded-full qc:flex qc:items-center qc:justify-center qc:font-semibold qc:transition-all qc:duration-300 qc:border-2"
                         :class="[
-                            index < currentStep ? 'bg-secondary border-secondary qc:text-white' : '',
-                            index === currentStep ? 'bg-secondary border-secondary qc:text-white qc:scale-110' : '',
-                            index > currentStep ? 'qc:bg-white qc:border-gray-300 qc:text-gray-400' : ''
+                            index < currentStep ? 'passed-step bg-secondary border-secondary' : '',
+                            index === currentStep ? 'current-step bg-secondary border-secondary' : '',
+                            index > currentStep ? 'upcoming-step' : ''
                         ]"
                     >
                         <!-- Checkmark for completed steps -->
@@ -47,7 +47,7 @@
                     <div 
                         class="qc:mt-2 qc:text-xs qc:font-medium qc:text-center qc:transition-all qc:duration-300"
                         :class="[
-                            index <= currentStep ? 'text-secondary' : 'qc:text-gray-200'
+                            index <= currentStep ? 'passed-step-text' : 'upcoming-step-text'
                         ]"
                     >
                         {{ step.title }}
@@ -108,7 +108,7 @@
             </ns-button>
         </div>
     </div>  
-    `}),g="/assets/character-3-BLsX_AL8.png",o=defineComponent({template:`
+    `}),g="/modules/nsquickconfig/build/assets/character-3-BLsX_AL8.png",o=defineComponent({template:`
     <div class="qc:flex qc:flex-col qc:h-full qc:w-full">
         <Progress class="qc:mt-8" :steps="steps" :progressWidth="progressWidth" :currentStep="currentStep"/>
         <div class="qc:h-[8em] qc:flex-col qc:flex qc:items-center qc:justify-center">
@@ -139,7 +139,7 @@
             </div>
         </div>
     </div>
-    `,components:{Progress:i},name:"StoreIdentityStep",props:["steps","progressWidth","currentStep"],data(){return{loading:!1,img:g,formData:{ns_store_name:"",ns_store_email:"",ns_store_square_logo:"",ns_currency_symbol:"$",ns_currency_position:"before",ns_currency_precision:2},fields:[],errors:{},saving:!1,validation:new FormValidation}},mounted(){this.loadFields()},methods:{__,handleBack(){this.$emit("previous")},validateForm(){},loadFields(){nsHttpClient.get("/api/fields/qc.store-identity").subscribe({next:e=>{const t=new FormValidation;this.fields=t.createFields(e)},error:e=>{nsSnackBar.error(e.message||__("Failed to load fields"))}})},saveAndContinue(){if(!this.validation.validateFields(this.fields))return nsSnackBar.error(__("Please correct the errors in the form before continuing."));nsHttpClient.post("/api/ns-quick-config/save-store-identity",this.validation.extractFields(this.fields)).subscribe({next:e=>{nsSnackBar.success(e.message),this.$emit("next"),this.saving=!1},error:e=>{nsSnackBar.error(e.message||__("Failed to save store identity")),this.saving=!1}})}}}),v="/assets/character-2-kr5_X1Kq.png",l=defineComponent({template:`
+    `,components:{Progress:i},name:"StoreIdentityStep",props:["steps","progressWidth","currentStep"],data(){return{loading:!1,img:g,formData:{ns_store_name:"",ns_store_email:"",ns_store_square_logo:"",ns_currency_symbol:"$",ns_currency_position:"before",ns_currency_precision:2},fields:[],errors:{},saving:!1,validation:new FormValidation}},mounted(){this.loadFields()},methods:{__,handleBack(){this.$emit("previous")},validateForm(){},loadFields(){nsHttpClient.get("/api/fields/qc.store-identity").subscribe({next:e=>{const t=new FormValidation;this.fields=t.createFields(e)},error:e=>{nsSnackBar.error(e.message||__("Failed to load fields"))}})},saveAndContinue(){if(!this.validation.validateFields(this.fields))return nsSnackBar.error(__("Please correct the errors in the form before continuing."));nsHttpClient.post("/api/ns-quick-config/save-store-identity",this.validation.extractFields(this.fields)).subscribe({next:e=>{nsSnackBar.success(e.message),this.$emit("next"),this.saving=!1},error:e=>{nsSnackBar.error(e.message||__("Failed to save store identity")),this.saving=!1}})}}}),v="/modules/nsquickconfig/build/assets/character-2-kr5_X1Kq.png",l=defineComponent({template:`
     <div class="qc:flex qc:flex-col qc:h-full qc:w-full">
         <Progress class="qc:mt-8" :steps="steps" :progressWidth="progressWidth" :currentStep="currentStep"/>
         <div class="qc:h-[10em] qc:flex-col qc:flex qc:items-center qc:justify-center">
@@ -159,26 +159,26 @@
                         <div class="qc:space-y-3">
                             <div v-for="printer in printers" 
                                 :key="printer.name"
-                                class="qc:rounded-lg qc:p-4 qc:border-2 border-secondary"
-                                :class="selectedPrinter === printer.name ? 'qc:shadow bg-secondary' : ''">
+                                @click="selectedPrinter = printer.name"
+                                class="qc:cursor-pointer qc:rounded-lg qc:p-4 qc:border-2 border-secondary"
+                                :class="selectedPrinter === printer.name ? 'qc:shadow qc:bg-teal-200' : ''">
                                 <div class="qc:flex qc:items-start qc:justify-between">
                                     <div class="qc:flex-1 qc:overflow-y-auto">
-                                        <div class="qc:flex qc:items-center qc:justify-between qc:gap-2 qc:mb-2">
-                                            <div class="qc:flex qc:gap-2 qc:justify-center">
-                                                <input 
-                                                    type="radio"
-                                                    :id="printer.name"
-                                                    :value="printer.name"
-                                                    v-model="selectedPrinter"
-                                                    class="qc:w-4 qc:h-4 qc:text-blue-600"
-                                                />
-                                                <label :for="printer.name" class="qc:font-semibold text-white qc:cursor-pointer">
+                                        <div class="qc:flex qc:md:flex-col qc:justify-between qc:gap-2 qc:mb-2">
+                                            <div class="qc:flex qc:gap-2 qc:justify-start">
+                                                <label :for="printer.name" class="qc:font-semibold text-fontcolor qc:cursor-pointer">
                                                     {{ printer.displayName || printer.name }}
                                                 </label>
                                                 <span v-if="printer.isDefault" 
                                                     class="qc:px-2 qc:py-0.5 qc:bg-green-100 qc:text-green-600 qc:text-xs qc:rounded">
                                                     {{ __('System Default') }}
                                                 </span>
+                                            </div>                                        
+                                            <div class="qc:text-sm qc:text-fontcolor">
+                                                <p v-if="printer.description">{{ printer.description }}</p>
+                                                <p v-if="printer.options && printer.options['printer-make-and-model']">
+                                                    {{ __('Model:') }} {{ printer.options['printer-make-and-model'] }}
+                                                </p>
                                             </div>
                                             <div v-if="selectedPrinter === printer.name" class="qc:flex qc:gap-2 qc:items-center qc:text-sm">
                                                 <ns-button :label="__m( 'Test Print', 'NsQuickConfig' )" @click="testPrint(printer)" size="sm" :disabled="testingPrint">
@@ -189,13 +189,6 @@
                                                     <span v-else><i class="las la-check qc:mr-2"></i> {{ __m( 'Select', 'NsQuickConfig' ) }} </span>
                                                 </ns-button>
                                             </div>
-                                        </div>
-                                        
-                                        <div class="qc:text-sm qc:text-fontcolor qc:ml-6">
-                                            <p v-if="printer.description">{{ printer.description }}</p>
-                                            <p v-if="printer.options && printer.options['printer-make-and-model']">
-                                                {{ __('Model:') }} {{ printer.options['printer-make-and-model'] }}
-                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -301,7 +294,7 @@
                     <line-feed></line-feed>
                     <full-cut/>
                 </document>
-            `;try{const s=await nsHttpClient.post(`${this.serverAddress}/api/print`,{printer:e.name,content:t}).toPromise();Popup.show(nsAlertPopup,{title:__("Test Print Sent"),message:__("A test receipt has been sent to the printer. Did you receive the printout?")})}catch(s){Popup.show(nsAlertPopup,{title:__("Test Print Failed"),message:__("Failed to send test print. Please check if the printer is turned on and connected to the computer.")+(s.message||"")})}finally{this.testingPrint=!1}},async setAsDefault(e){if(!this.serverAddress){nsSnackBar.error(__("Please set a print server address first"));return}this.settingDefault=!0;try{const t=await nsHttpClient.post("/api/ns-quick-config/set-default-printer",{server_address:this.serverAddress,printers:this.printers,default_printer:e.name}).toPromise();this.defaultPrinterSet=!0,nsSnackBar.success(t.message)}catch(t){nsSnackBar.error(t.message||__("Failed to set default printer"))}finally{this.settingDefault=!1}},skipPrintSetup(){Popup.show(nsConfirmPopup,{title:__("Skip Print Setup"),message:__("Are you sure you want to skip the print setup? You can configure it later in the settings."),onAction:e=>{e&&this.$emit("next","app-suggestion")}})},handleBack(){this.$emit("previous")},handleContinue(){if(!this.defaultPrinterSet){nsSnackBar.error(__("Please set a default printer before continuing"));return}this.$emit("next","app-suggestion")}}}),a=defineComponent({components:{Progress:i},props:["steps","progressWidth","currentStep","apiUrl"],template:`
+            `;try{const s=await nsHttpClient.post(`${this.serverAddress}/api/print`,{printer:e.name,content:t}).toPromise();nsSnackBar.success(__m("The print job was submitted. Please check if anything was printed.","NsQuickConfig"))}catch(s){Popup.show(nsAlertPopup,{title:__("Test Print Failed"),message:__("Failed to send test print. Please check if the printer is turned on and connected to the computer.")+(s.message||"")})}finally{this.testingPrint=!1}},async setAsDefault(e){if(!this.serverAddress){nsSnackBar.error(__("Please set a print server address first"));return}this.settingDefault=!0;try{const t=await nsHttpClient.post("/api/ns-quick-config/set-default-printer",{server_address:this.serverAddress,printers:this.printers,default_printer:e.name}).toPromise();this.defaultPrinterSet=!0,nsSnackBar.success(t.message)}catch(t){nsSnackBar.error(t.message||__("Failed to set default printer"))}finally{this.settingDefault=!1}},skipPrintSetup(){Popup.show(nsConfirmPopup,{title:__("Skip Print Setup"),message:__("Are you sure you want to skip the print setup? You can configure it later in the settings."),onAction:e=>{e&&this.$emit("next","app-suggestion")}})},handleBack(){this.$emit("previous")},handleContinue(){if(!this.defaultPrinterSet){nsSnackBar.error(__("Please set a default printer before continuing"));return}this.$emit("next","app-suggestion")}}}),a=defineComponent({components:{Progress:i},props:["steps","progressWidth","currentStep","apiUrl"],template:`
     <div class="qc:flex qc:flex-col qc:h-full qc:w-full">
         <Progress class="qc:mt-8" :steps="steps" :progressWidth="progressWidth" :currentStep="currentStep"/>
         <div class="qc:h-[10em] qc:flex-col qc:flex qc:items-center qc:justify-center">
@@ -312,9 +305,9 @@
         <div class="qc:flex-auto qc:flex qc:flex-row qc:p-4">
             <div class="qc:max-w-full qc:flex qc:flex-col">
 
-                <div class="qc:flex-auto qc:grid qc:grid-cols-1 qc:md:grid-cols-3 qc:lg:grid-cols-4 qc:xl:grid-cols-5 qc:gap-6 qc:mb-8">
+                <div class="qc:flex-auto qc:grid qc:grid-cols-1 qc:md:grid-cols-3 qc:lg:grid-cols-4 qc:gap-6 qc:mb-8">
                     <!-- Gastro Extension -->
-                    <div class="qc:border qc:border-gray-200 qc:rounded-lg qc:p-6 hover:qc:shadow-lg qc:transition-shadow qc:flex qc:flex-col">
+                    <div class="qc:border qc:border-gray-200 ns-box qc:rounded-lg qc:p-6 hover:qc:shadow-lg qc:transition-shadow qc:flex qc:flex-col">
                         <div class="qc:flex qc:items-start qc:gap-4 qc:mb-4">
                             <div class="qc:w-16 qc:h-16 qc:bg-gradient-to-br qc:from-orange-400 qc:to-red-500 qc:rounded-lg qc:flex qc:items-center qc:justify-center qc:flex-shrink-0">
                                 <svg class="qc:w-8 qc:h-8 qc:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -368,7 +361,7 @@
                     </div>
                     
                     <!-- NexoPOS Authorizer -->
-                    <div class="qc:border qc:border-gray-200 qc:rounded-lg qc:p-6 hover:qc:shadow-lg qc:transition-shadow qc:flex qc:flex-col">
+                    <div class="qc:border ns-box qc:border-gray-200 qc:rounded-lg qc:p-6 hover:qc:shadow-lg qc:transition-shadow qc:flex qc:flex-col">
                         <div class="qc:flex qc:items-start qc:gap-4 qc:mb-4">
                             <div class="qc:w-16 qc:h-16 qc:bg-gradient-to-br qc:from-blue-400 qc:to-indigo-500 qc:rounded-lg qc:flex qc:items-center qc:justify-center qc:flex-shrink-0">
                                 <svg class="qc:w-8 qc:h-8 qc:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -435,7 +428,7 @@
         </div>
     </div>
     `,name:"AppSuggestionStep",inject:["nsComponents"],methods:{__,handleBack(){this.$emit("previous")},handleFinish(){this.$emit("complete")}}}),x=()=>{const e={};return typeof nsComponents<"u"&&nsComponents&&Object.keys(nsComponents).forEach(t=>{const s=defineAsyncComponent({loader:()=>Promise.resolve(nsComponents[t]),delay:0,timeout:3e3}),r=t.replace(/([A-Z])/g,"-$1").toLowerCase().replace(/^-/,"");e[r]=s,e[t]=s}),e},d=defineComponent({template:`
-    <div class="qc:shadow-lg qc:w-screen qc:h-screen ns-box qc:rounded-none! qc:flex qc:flex-col">
+    <div class="qc:shadow-lg qc:w-screen qc:h-screen bg-surface qc:rounded-none! qc:flex qc:flex-col">
     
         <!-- Step Content with Transition -->
         <div class="qc:flex-auto qc:overflow-y-auto ns-box-body">
