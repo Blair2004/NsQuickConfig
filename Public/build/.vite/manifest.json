@@ -1,0 +1,13 @@
+{
+  "Resources/css/style.css": {
+    "file": "assets/style-CT7Hptgj.css",
+    "src": "Resources/css/style.css",
+    "isEntry": true
+  },
+  "Resources/ts/main.ts": {
+    "file": "assets/main-CivRObnk.js",
+    "name": "main",
+    "src": "Resources/ts/main.ts",
+    "isEntry": true
+  }
+}
