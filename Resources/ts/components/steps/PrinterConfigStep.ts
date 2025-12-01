@@ -309,23 +309,22 @@ export default defineComponent({
             
             this.settingDefault = true;
             
-            try {
-                const response = await nsHttpClient.post(
-                    `/api/ns-quick-config/set-default-printer`,
-                    {
-                        server_address: this.serverAddress,
-                        printers: this.printers,
-                        default_printer: printer.name
+           nsHttpClient.post( '/api/ns-quick-config/set-default-printer', {
+                    server_address: this.serverAddress,
+                    printers: this.printers,
+                    default_printer: printer.name
+                })
+                .subscribe({
+                    next: ( response: any ) => {
+                        this.defaultPrinterSet = true;
+                        this.settingDefault = false;
+                        nsSnackBar.success( response.message );
+                    },
+                    error: ( error: any ) => {
+                        this.settingDefault = false;
+                        nsSnackBar.error( error.message || __('Failed to set default printer') );
                     }
-                ).toPromise();
-                
-                this.defaultPrinterSet = true;
-                nsSnackBar.success(response.message);
-            } catch (error) {
-                nsSnackBar.error(error.message || __('Failed to set default printer'));
-            } finally {
-                this.settingDefault = false;
-            }
+                })
         },
         
         skipPrintSetup() {
